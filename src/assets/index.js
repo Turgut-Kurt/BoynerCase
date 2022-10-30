@@ -12,3 +12,5 @@ export {default as ProfileSvg} from './svg/bottomTabBar/ProfileSvg';
 export {default as ProfileActSvg} from './svg/bottomTabBar/ProfileActSvg';
 export {default as FavCardActSvg} from './svg/other/FavCardActSvg';
 export {default as FavCard} from './svg/other/FavCardSvg';
+export {default as SortSvg} from './svg/other/SortSvg';
+export {default as FilterSvg} from './svg/other/FilterSvg';
