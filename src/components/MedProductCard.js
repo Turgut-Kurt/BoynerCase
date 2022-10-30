@@ -7,7 +7,7 @@ import {CustomText} from './CustomText';
 import {FavButton} from './FavButton';
 
 const MedProductCard = ({item}) => {
-  const {DefaultButtonStyle} = styles;
+  const {DefaultButtonStyle, ImageStyle, ColorView, FavButtonStyle} = styles;
   const [active, setActive] = useState(false);
   return (
     <TouchableOpacity style={DefaultButtonStyle}>
@@ -16,20 +16,10 @@ const MedProductCard = ({item}) => {
           source={{
             uri: item.PictureUrl,
           }}
-          style={{width: '100%', height: fontSize(220), borderRadius: 3}}
+          style={ImageStyle}
         />
         {item.HasColour && (
-          <View
-            style={{
-              backgroundColor: colors.color7,
-              ...gs.posAbs,
-              zIndex: 999,
-              paddingVertical: 5,
-              paddingHorizontal: 8,
-              borderRadius: 25,
-              right: 10,
-              bottom: 10,
-            }}>
+          <View style={ColorView}>
             <CustomText
               f12
               fSemibold
@@ -43,7 +33,7 @@ const MedProductCard = ({item}) => {
         <FavButton
           onPress={() => setActive(!active)}
           type={active}
-          buttonStyle={{...gs.posAbs, right: 0, top: 0, zIndex: 9999}}
+          buttonStyle={FavButtonStyle}
         />
         <CustomText
           style={{marginTop: 1, width: calcWidth(35)}}
@@ -59,7 +49,6 @@ const MedProductCard = ({item}) => {
         />
         <View style={{marginTop: 10, ...gs.fdr, ...gs.aic}}>
           <CustomText
-            // style={{marginTop: 10}}
             f16
             fSemibold
             children={`${item.DiscountPrice} ${item.PriceCur}`}
@@ -119,6 +108,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingBottom: 10,
   },
+  ImageStyle: {width: '100%', height: fontSize(220), borderRadius: 3},
+  ColorView: {
+    backgroundColor: colors.color7,
+    ...gs.posAbs,
+    zIndex: 999,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderRadius: 25,
+    right: 10,
+    bottom: 10,
+  },
+  FavButtonStyle: {...gs.posAbs, right: 0, top: 0, zIndex: 9999},
 });
 
 export {MedProductCard};
