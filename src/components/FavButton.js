@@ -1,4 +1,4 @@
-import {FavCard, FavCardActSvg, FavSvg} from '~/assets';
+import {FavCard, FavCardActSvg} from '~/assets';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {colors, gs} from './config';
 
@@ -13,7 +13,6 @@ const FavButton = props => {
       onPress={props.onPress}
       style={[DefaultButtonStyle, buttonStyle]}>
       {type ? <FavCardActSvg /> : <FavCard />}
-      {/* <FavSvg colors={type ? colors.mainColor : colors.color2} /> */}
     </TouchableOpacity>
   );
 };

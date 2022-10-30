@@ -20,6 +20,7 @@ const colors = {
   color17: '#FAFAFA',
   color18: '#EEEDFE',
   color19: '#1DEF4B',
+  color20: '#FF6122',
   mainColor: '#60C59A',
 };
 

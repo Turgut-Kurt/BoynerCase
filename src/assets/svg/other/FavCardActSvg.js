@@ -27,8 +27,8 @@ FavCardActSvg.propTypes = {
 };
 //defaultProps
 FavCardActSvg.defaultProps = {
-  width: fontSize(14),
-  height: fontSize(14),
+  width: fontSize(18),
+  height: fontSize(18),
   colors: colors.color2,
 };
 export default FavCardActSvg;

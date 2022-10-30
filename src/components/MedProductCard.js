@@ -11,7 +11,7 @@ const MedProductCard = ({item}) => {
   const {DefaultButtonStyle, ImageStyle, ColorView, FavButtonStyle} = styles;
   const [active, setActive] = useState(false);
   const handleProductDetail = () => {
-    navigate(commonStack.productDetail);
+    navigate(commonStack.productDetail, {item: item});
   };
   return (
     <TouchableOpacity onPress={handleProductDetail} style={DefaultButtonStyle}>

@@ -141,6 +141,16 @@ const gs = StyleSheet.create({
     shadowRadius: 1.19,
     elevation: 4,
   },
+  shadow5: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.17,
+    shadowRadius: 1.19,
+    elevation: 2,
+  },
   //shadows top
   shadowTop: {
     shadowColor: '#000',
