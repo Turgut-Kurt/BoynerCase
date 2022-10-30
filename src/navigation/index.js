@@ -1,85 +1,27 @@
-import {Basket, Categories, Favorites, Home, Profile} from '~screens';
-import {
-  BasketActSvg,
-  BasketSvg,
-  CategoriesActSvg,
-  CategoriesSvg,
-  FavoritesActSvg,
-  FavoritesSvg,
-  HomeActSvg,
-  HomeSvg,
-  ProfileActSvg,
-  ProfileSvg,
-} from '~/assets';
-import React, {useEffect} from 'react';
+import HomeTabs from './HomeTabs';
+import {ProductDetail} from '~screens';
+import React from 'react';
+import {commonStack} from '~config';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import MyTabs from './MyTabs';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {homeTabs} from '~config';
-import useActions from '~/hooks/useActions';
-
-const Tab = createBottomTabNavigator();
-function HomeTabs() {
-  const Actions = useActions();
-  useEffect(() => {
-    Actions.getProductAction();
-  }, []);
+const Stack = createNativeStackNavigator();
+function CommonStack() {
   return (
-    <Tab.Navigator
-      initialRouteName={homeTabs.home}
-      screenOptions={{
-        tabBarStyle: {borderWidth: 1},
-        gestureEnabled: false,
-        headerShown: false,
-      }}
-      keyboardHidesNavigationBar={false}
-      tabBar={props => <MyTabs {...props} />}>
-      <Tab.Screen
-        name={homeTabs.home}
-        component={Home}
-        options={{
-          tabBarLabel: 'Anasayfa',
-          svg1: HomeActSvg,
-          svg2: HomeSvg,
-        }}
+    <Stack.Navigator
+      initialRouteName={commonStack.productDetail}
+      screenOptions={{gestureEnabled: false}}>
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={commonStack.homeTabs}
+        component={HomeTabs}
       />
-      <Tab.Screen
-        name={homeTabs.categories}
-        component={Categories}
-        options={{
-          tabBarLabel: 'Kategoriler',
-          svg1: CategoriesActSvg,
-          svg2: CategoriesSvg,
-        }}
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={commonStack.productDetail}
+        component={ProductDetail}
       />
-      <Tab.Screen
-        name={homeTabs.basket}
-        component={Basket}
-        options={{
-          tabBarLabel: 'Sepetim',
-          svg1: BasketActSvg,
-          svg2: BasketSvg,
-        }}
-      />
-      <Tab.Screen
-        name={homeTabs.favorites}
-        component={Favorites}
-        options={{
-          tabBarLabel: 'Favorilerim',
-          svg1: FavoritesActSvg,
-          svg2: FavoritesSvg,
-        }}
-      />
-      <Tab.Screen
-        name={homeTabs.profile}
-        component={Profile}
-        options={{
-          tabBarLabel: 'Profilim',
-          svg1: ProfileActSvg,
-          svg2: ProfileSvg,
-        }}
-      />
-    </Tab.Navigator>
+    </Stack.Navigator>
   );
 }
-export default HomeTabs;
+
+export default CommonStack;

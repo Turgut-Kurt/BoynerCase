@@ -1,11 +1,4 @@
-import {
-  CustomButton,
-  CustomText,
-  ProductList,
-  colors,
-  gs,
-  sizes,
-} from '~/components';
+import {CustomButton, CustomText, colors, gs, sizes} from '~/components';
 import {FilterSvg, SortSvg} from '~/assets';
 import {
   Modal,
@@ -21,7 +14,7 @@ import {productsSelector} from '~/modules/product/selector';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
 
-const Categories = props => {
+const ProductDetail = props => {
   const insets = useSafeAreaInsets();
   const products = useSelector(productsSelector);
   const [filterModal, setfilterModal] = useState(false);
@@ -107,10 +100,6 @@ const Categories = props => {
           <CustomText style={CommonText} fSemibold f14 children="FİLTRELE" />
         </TouchableOpacity>
       </View>
-      <ProductList
-        flatStyle={{backgroundColor: colors.color7}}
-        data={products}
-      />
     </View>
   );
 };
@@ -133,6 +122,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export {Categories};
-// exports ProductDetail Screen
-export * from './ProductDetail';
+export {ProductDetail};
+// exports Example Screen
+// export * from './Example';

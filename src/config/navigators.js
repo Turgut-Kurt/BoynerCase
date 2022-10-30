@@ -8,4 +8,11 @@ const homeTabs = {
 };
 // homeTabs completed!
 
-export {homeTabs};
+// commonStack completed!
+const commonStack = {
+  homeTabs: 'HomeTabs',
+  productDetail: 'ProductDetail',
+};
+// commonStack completed!
+
+export {homeTabs, commonStack};

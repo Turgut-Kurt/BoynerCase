@@ -1,5 +1,5 @@
 //export all config
 
-export {homeTabs} from './navigators';
+export {homeTabs, commonStack} from './navigators';
 
 export {default as baseUrl} from './api';
