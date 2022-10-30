@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   ItemSeparator: {
     width: calcWidth(100) - 40,
     ...gs.asc,
-    height: 15,
+    height: 20,
   },
 });
 export {ProductList};

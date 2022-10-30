@@ -103,7 +103,7 @@ const MedProductCard = ({item}) => {
 };
 const styles = StyleSheet.create({
   DefaultButtonStyle: {
-    width: (calcWidth(100) - 55) / 2,
+    width: (calcWidth(100) - 60) / 2,
     backgroundColor: colors.color7,
     borderRadius: 10,
     paddingBottom: 10,
