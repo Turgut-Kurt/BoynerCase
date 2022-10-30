@@ -62,10 +62,9 @@ const styles = StyleSheet.create({
     width: calcWidth(100) - 40,
     ...gs.asc,
     height: fontSize(50),
-    backgroundColor: colors.color9,
-    borderRadius: 10,
+    backgroundColor: colors.mainColor,
+    borderRadius: 2,
     ...gs.jccaic,
-    ...gs.shadow2,
   },
   BorderedButtonStyle: {
     width: calcWidth(100) - 40,
