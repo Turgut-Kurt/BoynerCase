@@ -8,7 +8,7 @@ const colors = {
   color5: '#F2517A',
   color6: '#FBF4F6',
   color7: '#FFFFFF',
-  color8: '#7597CE',
+  color8: '#0569C6',
   color9: '#3F3D56',
   color10: '#ACB8C2',
   color11: '#656F77',
@@ -20,7 +20,7 @@ const colors = {
   color17: '#FAFAFA',
   color18: '#EEEDFE',
   color19: '#1DEF4B',
-  mainColor: '#4ba57f',
+  mainColor: '#60C59A',
 };
 
 //export All objects

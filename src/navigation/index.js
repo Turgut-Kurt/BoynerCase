@@ -11,14 +11,19 @@ import {
   ProfileActSvg,
   ProfileSvg,
 } from '~/assets';
+import React, {useEffect} from 'react';
 
 import MyTabs from './MyTabs';
-import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {homeTabs} from '~config';
+import useActions from '~/hooks/useActions';
 
 const Tab = createBottomTabNavigator();
 function HomeTabs() {
+  const Actions = useActions();
+  useEffect(() => {
+    Actions.getProductAction();
+  }, []);
   return (
     <Tab.Navigator
       initialRouteName={homeTabs.home}

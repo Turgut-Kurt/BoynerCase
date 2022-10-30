@@ -10,3 +10,5 @@ export {default as FavoritesSvg} from './svg/bottomTabBar/FavoritesSvg';
 export {default as FavoritesActSvg} from './svg/bottomTabBar/FavoritesActSvg';
 export {default as ProfileSvg} from './svg/bottomTabBar/ProfileSvg';
 export {default as ProfileActSvg} from './svg/bottomTabBar/ProfileActSvg';
+export {default as FavCardActSvg} from './svg/other/FavCardActSvg';
+export {default as FavCard} from './svg/other/FavCardSvg';
