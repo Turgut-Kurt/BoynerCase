@@ -3,11 +3,20 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+     "android": "clear && react-native run-android",
+    "ios": "clear && react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "pod": "cd ios && pod install",
+    "clear1": "cd android && ./gradlew clean && clear",
+    "clear2": "cd ios && xcodebuild clean && clear",
+    "reset": "react-native start --reset-cache",
+    "variant": "npx react-native run-android --variant=release",
+    "assets": "npx react-native-asset",
+    "debug-build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew assembleDebug && cd ..",
+    "release-build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && cd android && ./gradlew assembleRelease && cd ..",
+    "build:ios": "react-native bundle --platform='ios' --dev=false --entry-file='index.js' --bundle-output='./ios/main.jsbundle' "
   },
   "dependencies": {
     "react": "18.1.0",
