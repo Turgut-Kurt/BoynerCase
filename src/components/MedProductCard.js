@@ -1,16 +1,20 @@
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
-import {calcWidth, fontSize} from '~/utils';
+import {calcWidth, fontSize, navigate} from '~/utils';
 import {colors, gs} from './config';
 
 import {CustomText} from './CustomText';
 import {FavButton} from './FavButton';
+import {commonStack} from '~/config';
 
 const MedProductCard = ({item}) => {
   const {DefaultButtonStyle, ImageStyle, ColorView, FavButtonStyle} = styles;
   const [active, setActive] = useState(false);
+  const handleProductDetail = () => {
+    navigate(commonStack.productDetail);
+  };
   return (
-    <TouchableOpacity style={DefaultButtonStyle}>
+    <TouchableOpacity onPress={handleProductDetail} style={DefaultButtonStyle}>
       <View>
         <Image
           source={{

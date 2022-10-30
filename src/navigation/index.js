@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 function CommonStack() {
   return (
     <Stack.Navigator
-      initialRouteName={commonStack.productDetail}
+      initialRouteName={commonStack.homeTabs}
       screenOptions={{gestureEnabled: false}}>
       <Stack.Screen
         options={{headerShown: false}}

@@ -14,8 +14,6 @@ import {setProducts} from './slice';
 function* getProductsSaga() {
   try {
     const response = yield call(getProductsService);
-    console.log('res+' + JSON.stringify(response));
-    // console.log('res+' + JSON.stringify(response.data));
     if (response.status === 200) {
       yield put(setProducts(response.data));
     } else {
