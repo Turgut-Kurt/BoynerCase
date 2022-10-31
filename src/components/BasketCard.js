@@ -6,9 +6,11 @@ import {colors, fonts, gs, sizes, weights} from './config';
 import {CheckBox} from 'react-native-elements/dist';
 import {CustomText} from './CustomText';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import useActions from '~/hooks/useActions';
 
-const BasketCard = ({item}) => {
+const BasketCard = ({item, index}) => {
   const [checked, setChecked] = useState(false);
+  const Actions = useActions();
   const {
     Container,
     CloseButton,
@@ -22,7 +24,9 @@ const BasketCard = ({item}) => {
   } = styles;
   return (
     <View style={Container}>
-      <TouchableOpacity style={CloseButton}>
+      <TouchableOpacity
+        onPress={() => Actions.removeToBasketAction(index)}
+        style={CloseButton}>
         <MaterialCommunityIcons
           name={'close'}
           color={colors.color2}

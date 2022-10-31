@@ -23,6 +23,6 @@ export const slice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {addToBasket} = slice.actions;
+export const {addToBasket, removeToBasket} = slice.actions;
 
 export default slice.reducer;
