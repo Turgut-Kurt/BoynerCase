@@ -1,6 +1,6 @@
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
-import {calcHeight, calcWidth, fontSize} from '~/utils';
+import {calcWidth} from '~/utils';
 import {colors, fonts, gs, sizes, weights} from './config';
 
 import {CheckBox} from 'react-native-elements/dist';
