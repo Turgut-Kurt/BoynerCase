@@ -16,3 +16,4 @@ export {default as SortSvg} from './svg/other/SortSvg';
 export {default as FilterSvg} from './svg/other/FilterSvg';
 export {default as BasketFreeSvg} from './svg/other/BasketFreeSvg';
 export {default as FavFreeSvg} from './svg/other/FavFreeSvg';
+export {default as Boyner_Logo} from './images/Boyner_Logo.jpeg';
