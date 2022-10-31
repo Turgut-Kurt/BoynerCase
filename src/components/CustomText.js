@@ -1,5 +1,5 @@
 import {PropTypes, colors, fonts, sizes} from './config';
-import {StyleProp, StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
 import React from 'react';
 import {TextPropTypes} from 'deprecated-react-native-prop-types';
