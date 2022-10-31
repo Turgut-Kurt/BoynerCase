@@ -2,10 +2,11 @@ import {
   addToBasketAction,
   removeToBasketAction,
 } from '~/modules/basket/actions';
+import {getFilterAction, getProductAction} from '~/modules/product/actions';
 
 import {bindActionCreators} from 'redux';
-import {getProductAction} from '~/modules/product/actions';
 import {useDispatch} from 'react-redux';
+
 const useActions = () => {
   const dispatch = useDispatch();
   return bindActionCreators(
@@ -13,6 +14,7 @@ const useActions = () => {
       getProductAction,
       addToBasketAction,
       removeToBasketAction,
+      getFilterAction,
     },
     dispatch,
   );

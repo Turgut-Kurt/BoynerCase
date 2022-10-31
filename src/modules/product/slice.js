@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   products: [],
+  filter: {},
 };
 
 export const slice = createSlice({
@@ -12,10 +13,13 @@ export const slice = createSlice({
     setProducts: (state, action) => {
       state.products = action.payload.ProductList;
     },
+    setFilter: (state, action) => {
+      state.filter = action.payload.Context;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {setProducts} = slice.actions;
+export const {setProducts, setFilter} = slice.actions;
 
 export default slice.reducer;

@@ -14,26 +14,53 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {filterDataSelector, productsSelector} from '~/modules/product/selector';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {productsSelector} from '~/modules/product/selector';
+import useActions from '~/hooks/useActions';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
 
 const Categories = props => {
   const insets = useSafeAreaInsets();
+  const Actions = useActions();
   const products = useSelector(productsSelector);
+  const filterData = useSelector(filterDataSelector);
   const [filterModal, setfilterModal] = useState(false);
   const {Container, HeaderContainer, CommonButton, CommonText, FreeView} =
     styles;
-  let data = [
-    {id: 1, name: 'Cinsiyet'},
-    {id: 2, name: 'Ürün Çeşidi'},
-    {id: 3, name: 'Marka'},
-    {id: 4, name: 'Renk', isPressable: true},
-    {id: 5, name: 'Beden'},
-  ];
+  useEffect(() => {
+    Actions.getFilterAction();
+  }, []);
+  const renderItem = (item, index) => {
+    return (
+      (filterData[item].ItemType === 'size' ||
+        filterData[item].ItemType === 'gender' ||
+        filterData[item].ItemType === 'brand' ||
+        filterData[item].ItemType === 'color' ||
+        filterData[item].ItemType === 'Price') && (
+        <View
+          key={index}
+          style={{
+            ...gs.fdr,
+            paddingVertical: 15,
+            marginHorizontal: 20,
+            ...gs.jcsb,
+            borderBottomWidth: 1,
+            borderBottomColor: colors.color15,
+            ...gs.aic,
+          }}>
+          <CustomText f14 children={filterData[item].Name} />
+          <MaterialCommunityIcons
+            name={'chevron-right'}
+            color={colors.color9}
+            size={sizes.f26}
+          />
+        </View>
+      )
+    );
+  };
   return (
     <View style={[Container, {paddingTop: insets.top}]}>
       <Modal
@@ -66,27 +93,8 @@ const Categories = props => {
           <CustomText style={{...gs.asc}} f16 fSemibold children="Filtrele" />
         </View>
         <ScrollView>
-          {data.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{
-                  ...gs.fdr,
-                  paddingVertical: 15,
-                  marginHorizontal: 20,
-                  ...gs.jcsb,
-                  borderBottomWidth: 1,
-                  borderBottomColor: colors.color15,
-                  ...gs.aic,
-                }}>
-                <CustomText f14 children={item.name} />
-                <MaterialCommunityIcons
-                  name={'chevron-right'}
-                  color={colors.color9}
-                  size={sizes.f26}
-                />
-              </View>
-            );
+          {Object.keys(filterData).map((item, index) => {
+            return renderItem(item, index);
           })}
         </ScrollView>
         <CustomButton
