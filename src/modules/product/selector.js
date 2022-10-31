@@ -8,7 +8,6 @@ export const product = state => state.product;
 export const productsSelector = createSelector(
   state => state.product.products,
   products => {
-    console.log('productsSelector has worked');
     return products;
   },
 );
@@ -20,7 +19,6 @@ export const productsSelector = createSelector(
 export const filterDataSelector = createSelector(
   state => state.product.filter.FilterModules,
   FilterModules => {
-    console.log('filterDataSelector has worked');
     return FilterModules;
   },
 );
@@ -32,11 +30,9 @@ export const filterDataSelector = createSelector(
 export const sortDataSelector = createSelector(
   state => state.product.filter.SortModule,
   SortModule => {
-    console.log('sortDataSelector has worked');
     return SortModule;
   },
 );
-
 
 /**
  * favorite id list selector
@@ -45,7 +41,6 @@ export const sortDataSelector = createSelector(
 export const favoriteIdListSelector = createSelector(
   state => state.product.favoriteIdList,
   favoriteIdList => {
-    console.log('favoriteIdListSelector has worked');
     return favoriteIdList;
   },
 );
@@ -57,7 +52,6 @@ export const favoriteIdListSelector = createSelector(
 export const favoriteListSelector = createSelector(
   state => state.product.favoriteList,
   favoriteList => {
-    console.log('favoriteList has worked');
     return favoriteList;
   },
 );

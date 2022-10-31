@@ -8,7 +8,6 @@ export const basket = state => state.basket;
 export const basketItemsSelector = createSelector(
   state => state.basket.basketItems,
   basketItems => {
-    console.log('basketItemsSelector has worked');
     return basketItems;
   },
 );
