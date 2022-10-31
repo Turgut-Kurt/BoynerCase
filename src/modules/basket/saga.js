@@ -1,6 +1,6 @@
 import * as Actions from './actions';
 
-import {addToBasket, removeToBasket} from './slice';
+import {addToBasket, clearBasket, removeToBasket} from './slice';
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects';
 
 import {goBack} from '~/utils';
@@ -13,7 +13,6 @@ import {showMessage} from 'react-native-flash-message/src';
  * @returns {IterableIterator<*>}
  */
 function* addToBasketSaga({payload}) {
-  console.log('addToBasketSaga  : ');
   try {
     // const pageNumber = yield select(pageNumberSelector);
     yield put(addToBasket(payload));
@@ -32,6 +31,7 @@ function* addToBasketSaga({payload}) {
     console.log('catch addToBasketSaga error : ' + error);
   }
 }
+
 /**
  * remove to basket saga
  * ürünü sepetten sil saga
@@ -55,8 +55,32 @@ function* removeToBasketSaga({payload}) {
     console.log('catch removeToBasketSaga error : ' + error);
   }
 }
+/**
+ * clear to basket saga
+ * sepeti temizle saga
+ * @param payload
+ * @returns {IterableIterator<*>}
+ */
+function* clearBasketSaga() {
+  try {
+    yield put(clearBasket());
+    yield call(showMessage, {
+      message: 'Başarılı',
+      description: 'Siparişiniz başarıyla tamamlanmıştır. ',
+      type: 'success',
+    });
+  } catch (error) {
+    yield call(showMessage, {
+      message: 'Hata',
+      description: 'Sipariş işlemi başarısız.',
+      type: 'danger',
+    });
+    console.log('catch clearBasketSaga error : ' + error);
+  }
+}
 
 export default function* basketSaga() {
   yield takeLatest(Actions.addToBasketAction.type, addToBasketSaga);
   yield takeLatest(Actions.removeToBasketAction.type, removeToBasketSaga);
+  yield takeLatest(Actions.clearBasketAction.type, clearBasketSaga);
 }

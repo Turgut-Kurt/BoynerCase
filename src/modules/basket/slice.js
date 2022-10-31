@@ -19,6 +19,9 @@ export const slice = createSlice({
         (item, index) => index !== action.payload,
       );
     },
+    clearBasket: state => {
+      state.basketItems = [];
+    },
   },
   extraReducers: builder => {
     builder.addCase(REHYDRATE, (state, action) => {
@@ -37,6 +40,6 @@ export const slice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {addToBasket, removeToBasket} = slice.actions;
+export const {addToBasket, removeToBasket, clearBasket} = slice.actions;
 
 export default slice.reducer;

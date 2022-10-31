@@ -27,7 +27,7 @@ const Basket = props => {
     BottomLeftViewInView,
   } = styles;
   const handleConfirmToBasket = () => {
-    console.log('handleAddToBasket');
+    Actions.clearBasketAction();
   };
   return (
     <View style={[Container]}>

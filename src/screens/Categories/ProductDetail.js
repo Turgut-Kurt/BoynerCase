@@ -41,7 +41,6 @@ const ProductDetail = props => {
     navigate(homeTabs.basket);
   };
   const handleAddToBasket = () => {
-    console.log('handleAddToBasket');
     Actions.addToBasketAction(params.item);
   };
   const [active, setActive] = useState(false);

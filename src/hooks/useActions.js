@@ -1,5 +1,6 @@
 import {
   addToBasketAction,
+  clearBasketAction,
   removeToBasketAction,
 } from '~/modules/basket/actions';
 import {
@@ -20,6 +21,7 @@ const useActions = () => {
       getFilterAction,
       addFavoriteAction,
       deleteFavoriteAction,
+      clearBasketAction,
     },
     dispatch,
   );
