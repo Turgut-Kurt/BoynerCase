@@ -12,7 +12,7 @@ import {useSelector} from 'react-redux';
 const Favorites = props => {
   const insets = useSafeAreaInsets();
   const favList = useSelector(favoriteListSelector);
-  const {Container, HeaderContainer} = styles;
+  const {Container, HeaderContainer, FreeDataView} = styles;
   return (
     <View style={[Container]}>
       {favList.length > 0 ? (
@@ -24,12 +24,7 @@ const Favorites = props => {
           <FavList data={favList} />
         </>
       ) : (
-        <View
-          style={{
-            paddingTop: insets.top,
-            backgroundColor: colors.color7,
-            flex: 1,
-          }}>
+        <View style={[FreeDataView, {paddingTop: insets.top}]}>
           <FavFreeSvg style={{...gs.asc}} />
           <CustomText style={{...gs.asc}} f24 children="Favori ürününüz yok." />
         </View>
@@ -44,6 +39,10 @@ const styles = StyleSheet.create({
     width: calcWidth(100),
     backgroundColor: colors.color7,
     ...gs.aic,
+  },
+  FreeDataView: {
+    backgroundColor: colors.color7,
+    flex: 1,
   },
 });
 

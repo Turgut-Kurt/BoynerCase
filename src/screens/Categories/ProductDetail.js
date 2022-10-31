@@ -36,6 +36,7 @@ const ProductDetail = props => {
     Pagination,
     ActiveDot,
     DotStyle,
+    BasketView,
   } = styles;
   const navigateBasket = () => {
     navigate(homeTabs.basket);
@@ -65,18 +66,7 @@ const ProductDetail = props => {
           </TouchableOpacity>
           <TouchableOpacity style={CommonButton} onPress={navigateBasket}>
             {basketItems.length > 0 && (
-              <View
-                style={{
-                  ...gs.posAbs,
-                  backgroundColor: colors.color20,
-                  width: fontSize(16),
-                  height: fontSize(16),
-                  borderRadius: 25,
-                  ...gs.jccaic,
-                  top: 0,
-                  right: 0,
-                  zIndex: 99,
-                }}>
+              <View style={BasketView}>
                 <CustomText
                   children={basketItems.length}
                   f10
@@ -259,6 +249,17 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through',
     textDecorationStyle: 'solid',
     color: colors.color13,
+  },
+  BasketView: {
+    ...gs.posAbs,
+    backgroundColor: colors.color20,
+    width: fontSize(16),
+    height: fontSize(16),
+    borderRadius: 25,
+    ...gs.jccaic,
+    top: 0,
+    right: 0,
+    zIndex: 99,
   },
 });
 

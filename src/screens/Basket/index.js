@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.color7,
     ...gs.aic,
   },
-
   BottomView: {
     ...gs.fdr,
     paddingVertical: 10,

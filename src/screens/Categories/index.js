@@ -10,7 +10,6 @@ import {FilterSvg, SortSvg} from '~/assets';
 import {
   FlatList,
   Modal,
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -38,6 +37,9 @@ const Categories = props => {
     CommonText,
     FreeView,
     RenderButton,
+    ModalView,
+    ModalCloseButton,
+    NextModalButton,
   } = styles;
   useEffect(() => {
     Actions.getFilterAction();
@@ -71,10 +73,10 @@ const Categories = props => {
   const renderItem2 = ({item, index}) => {
     return (
       <TouchableOpacity
-        onPress={() => {
-          setSelectedObj(item);
-          setType(true);
-        }}
+        // onPress={() => {
+        //   setSelectedObj(item);
+        //   setType(true);
+        // }}
         key={index}
         style={RenderButton}>
         <CustomText f14 children={item.Name} />
@@ -87,25 +89,15 @@ const Categories = props => {
         visible={filterModal}
         presentationStyle="pageSheet"
         transparent={false}
-        // onShow={}
         style={{
           flex: 0,
         }}>
         {!type ? (
           <>
-            <View
-              style={{
-                paddingHorizontal: 20,
-                paddingVertical: 15,
-                ...gs.jcc,
-              }}>
+            <View style={ModalView}>
               <TouchableOpacity
                 onPress={() => setfilterModal(false)}
-                style={{
-                  ...gs.jccaic,
-                  ...gs.posAbs,
-                  left: 20,
-                }}>
+                style={ModalCloseButton}>
                 <MaterialCommunityIcons
                   name={'close'}
                   color={colors.color2}
@@ -137,22 +129,13 @@ const Categories = props => {
           </>
         ) : (
           <>
-            <View
-              style={{
-                paddingHorizontal: 20,
-                paddingVertical: 15,
-                ...gs.jcc,
-              }}>
+            <View style={ModalView}>
               <TouchableOpacity
                 onPress={() => {
                   setSelectedObj({});
                   setType(false);
                 }}
-                style={{
-                  ...gs.jccaic,
-                  ...gs.posAbs,
-                  left: 20,
-                }}>
+                style={NextModalButton}>
                 <MaterialCommunityIcons
                   name={'chevron-left'}
                   color={colors.color2}
@@ -225,6 +208,21 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.color15,
     ...gs.aic,
+  },
+  ModalView: {
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    ...gs.jcc,
+  },
+  ModalCloseButton: {
+    ...gs.jccaic,
+    ...gs.posAbs,
+    left: 20,
+  },
+  NextModalButton: {
+    ...gs.jccaic,
+    ...gs.posAbs,
+    left: 20,
   },
 });
 
