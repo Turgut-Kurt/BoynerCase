@@ -7,12 +7,14 @@ import {BasketSvg} from '~/assets';
 import CompSwiper from 'react-native-swiper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {homeTabs} from '~/config';
+import useActions from '~/hooks/useActions';
 import {useRoute} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const ProductDetail = props => {
   const {params} = useRoute();
   const insets = useSafeAreaInsets();
+  const Actions = useActions();
   const {
     Container,
     HeaderContainer,
@@ -33,6 +35,10 @@ const ProductDetail = props => {
   } = styles;
   const navigateBasket = () => {
     navigate(homeTabs.basket);
+  };
+  const handleAddToBasket = () => {
+    console.log('handleAddToBasket');
+    Actions.addToBasketAction(params.item);
   };
   const [active, setActive] = useState(false);
 
@@ -132,7 +138,7 @@ const ProductDetail = props => {
               />
             </View>
           </View>
-          <TouchableOpacity style={AddBasketView}>
+          <TouchableOpacity onPress={handleAddToBasket} style={AddBasketView}>
             <CustomText
               f14
               fSemibold
