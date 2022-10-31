@@ -10,3 +10,5 @@ export * from './MedProductCard';
 export * from './FavButton';
 export * from './BasketCard';
 export * from './BasketList';
+export * from './FavList';
+export * from './FavCard';
