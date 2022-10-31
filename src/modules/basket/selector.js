@@ -12,3 +12,11 @@ export const basketItemsSelector = createSelector(
     return basketItems;
   },
 );
+
+/**
+ * discount price selector
+ * @type {OutputSelector<unknown, *, (res: *) => *>}
+ */
+export const discountPriceSelector = createSelector([basket], items => {
+  return items.basketItems.reduce((acc, item) => acc + item.DiscountPrice, 0);
+});
