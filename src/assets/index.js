@@ -14,3 +14,4 @@ export {default as FavCardActSvg} from './svg/other/FavCardActSvg';
 export {default as FavCard} from './svg/other/FavCardSvg';
 export {default as SortSvg} from './svg/other/SortSvg';
 export {default as FilterSvg} from './svg/other/FilterSvg';
+export {default as BasketFreeSvg} from './svg/other/BasketFreeSvg';
