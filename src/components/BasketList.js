@@ -5,7 +5,7 @@ import {BasketCard} from './BasketCard';
 
 const BasketList = ({data, listHeader, flatStyle, ...rest}) => {
   const renderItem = useCallback(({item}) => <BasketCard item={item} />, []);
-  const keyExtractor = useCallback(item => item.ListingId.toString(), []);
+  const keyExtractor = useCallback((item, index) => index.toString(), []);
   return (
     <FlatList
       style={[flatStyle]}
