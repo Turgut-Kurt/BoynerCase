@@ -20,6 +20,20 @@ export const slice = createSlice({
       );
     },
   },
+  extraReducers: builder => {
+    builder.addCase(REHYDRATE, (state, action) => {
+      if (action.payload && action.payload.basket) {
+        // Restore only user and isLogin state
+        const {basket} = action.payload;
+        return {
+          ...initialState,
+          basketItems: basket.basketItems,
+        };
+      } else {
+        return state;
+      }
+    });
+  },
 });
 
 // Action creators are generated for each case reducer function
