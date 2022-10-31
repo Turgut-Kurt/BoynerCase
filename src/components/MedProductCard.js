@@ -6,13 +6,20 @@ import {colors, gs} from './config';
 import {CustomText} from './CustomText';
 import {FavButton} from './FavButton';
 import {commonStack} from '~/config';
+import useActions from '~/hooks/useActions';
+import {useSelector} from 'react-redux';
+import {favoriteIdListSelector} from '~/modules/product/selector';
 
 const MedProductCard = ({item}) => {
   const {DefaultButtonStyle, ImageStyle, ColorView, FavButtonStyle} = styles;
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
   const handleProductDetail = () => {
     navigate(commonStack.productDetail, {item: item});
   };
+  const favIdList = useSelector(favoriteIdListSelector);
+  console.log('favIdList', favIdList);
+  let active = favIdList.find(x => x === item.ListingId);
+  const Actions = useActions();
   return (
     <TouchableOpacity onPress={handleProductDetail} style={DefaultButtonStyle}>
       <View>
@@ -35,7 +42,7 @@ const MedProductCard = ({item}) => {
 
       <View style={{}}>
         <FavButton
-          onPress={() => setActive(!active)}
+          onPress={() => Actions.addFavoriteAction(item)}
           type={active}
           buttonStyle={FavButtonStyle}
         />

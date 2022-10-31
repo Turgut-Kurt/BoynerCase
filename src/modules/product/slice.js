@@ -22,10 +22,25 @@ export const slice = createSlice({
       let copyList = state.favoriteList;
       copyList.unshift(action.payload);
       let copyIdList = state.favoriteIdList;
-      copyIdList.unshift(action.payload.id);
-      state.favoriteList = copyList;
-      state.favoriteIdList = copyIdList;
+      copyIdList.unshift(action.payload.ListingId);
+      state.favoriteList = [];
+      state.favoriteIdList = [];
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(REHYDRATE, (state, action) => {
+      if (action.payload && action.payload.product) {
+        // Restore only user and isLogin state
+        const {product} = action.payload;
+        return {
+          ...initialState,
+          favoriteList: product.favoriteList,
+          favoriteIdList: product.favoriteIdList,
+        };
+      } else {
+        return state;
+      }
+    });
   },
 });
 
