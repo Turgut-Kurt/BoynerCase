@@ -2,8 +2,11 @@ import {
   addToBasketAction,
   removeToBasketAction,
 } from '~/modules/basket/actions';
-import {getFilterAction, getProductAction} from '~/modules/product/actions';
-
+import {
+  addFavoriteAction,
+  getFilterAction,
+  getProductAction,
+} from '~/modules/product/actions';
 import {bindActionCreators} from 'redux';
 import {useDispatch} from 'react-redux';
 
@@ -15,6 +18,7 @@ const useActions = () => {
       addToBasketAction,
       removeToBasketAction,
       getFilterAction,
+      addFavoriteAction,
     },
     dispatch,
   );
