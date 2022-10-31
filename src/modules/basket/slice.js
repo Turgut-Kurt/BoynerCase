@@ -2,20 +2,20 @@ import {REHYDRATE} from 'redux-persist';
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  basket: [],
+  basketItems: [],
 };
 
 export const slice = createSlice({
-  name: 'baskets',
+  name: 'basket',
   initialState,
   reducers: {
     addToBasket: (state, action) => {
-      let copyList = state.basket;
+      let copyList = state.basketItems;
       copyList.unshift(action.payload);
-      state.baskets = copyList;
+      state.basketItems = copyList;
     },
     removeToBasket: (state, action) => {
-      state.baskets = state.baskets.filter(
+      state.basketItems = state.basketItems.filter(
         (item, index) => index !== action.payload,
       );
     },

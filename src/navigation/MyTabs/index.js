@@ -2,11 +2,14 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors, fonts, gs, sizes, weights} from '~/components';
 
 import React from 'react';
+import {basketItemsSelector} from '~/modules/basket/selector';
 import {fontSize} from '~utils';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useSelector} from 'react-redux';
 
 function MyTabs({state, descriptors, navigation}) {
   const insets = useSafeAreaInsets();
+  const basketItems = useSelector(basketItemsSelector);
   return (
     <View
       style={{
@@ -58,6 +61,28 @@ function MyTabs({state, descriptors, navigation}) {
               onLongPress={onLongPress}
               style={[styles.buttonStyle]}>
               {isFocused ? <Comp1 color={colors.mainColor} /> : <Comp2 />}
+              {label === 'Sepetim' && basketItems.length > 0 && (
+                <View
+                  style={{
+                    ...gs.posAbs,
+                    backgroundColor: colors.color20,
+                    width: fontSize(16),
+                    height: fontSize(16),
+                    borderRadius: 25,
+                    ...gs.jccaic,
+                    top: 2,
+                    right: 20,
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: sizes.f10,
+                      ...fonts.Regular,
+                      color: colors.color7,
+                    }}>
+                    {basketItems.length}
+                  </Text>
+                </View>
+              )}
               <Text
                 style={[
                   styles.tabBarLabelStyle,

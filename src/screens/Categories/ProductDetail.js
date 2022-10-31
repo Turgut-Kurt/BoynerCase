@@ -6,15 +6,19 @@ import {calcHeight, calcWidth, fontSize, goBack, navigate} from '~/utils';
 import {BasketSvg} from '~/assets';
 import CompSwiper from 'react-native-swiper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {basketItemsSelector} from '~/modules/basket/selector';
 import {homeTabs} from '~/config';
 import useActions from '~/hooks/useActions';
 import {useRoute} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useSelector} from 'react-redux';
 
 const ProductDetail = props => {
   const {params} = useRoute();
   const insets = useSafeAreaInsets();
   const Actions = useActions();
+  const basketItems = useSelector(basketItemsSelector);
+
   const {
     Container,
     HeaderContainer,
@@ -61,6 +65,28 @@ const ProductDetail = props => {
             />
           </TouchableOpacity>
           <TouchableOpacity style={CommonButton} onPress={navigateBasket}>
+            {basketItems.length > 0 && (
+              <View
+                style={{
+                  ...gs.posAbs,
+                  backgroundColor: colors.color20,
+                  width: fontSize(16),
+                  height: fontSize(16),
+                  borderRadius: 25,
+                  ...gs.jccaic,
+                  top: 0,
+                  right: 0,
+                  zIndex: 99,
+                }}>
+                <CustomText
+                  children={basketItems.length}
+                  f10
+                  style={{
+                    color: colors.color7,
+                  }}
+                />
+              </View>
+            )}
             <BasketSvg width={30} height={30} />
           </TouchableOpacity>
         </View>
