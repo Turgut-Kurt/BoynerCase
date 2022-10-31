@@ -8,13 +8,14 @@ import {
 } from '~/components';
 import {FilterSvg, SortSvg} from '~/assets';
 import {
+  FlatList,
   Modal,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {filterDataSelector, productsSelector} from '~/modules/product/selector';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -28,79 +29,152 @@ const Categories = props => {
   const products = useSelector(productsSelector);
   const filterData = useSelector(filterDataSelector);
   const [filterModal, setfilterModal] = useState(false);
-  const {Container, HeaderContainer, CommonButton, CommonText, FreeView} =
-    styles;
+  const [type, setType] = useState(false);
+  const [selectedObj, setSelectedObj] = useState({});
+  const {
+    Container,
+    HeaderContainer,
+    CommonButton,
+    CommonText,
+    FreeView,
+    RenderButton,
+  } = styles;
   useEffect(() => {
     Actions.getFilterAction();
   }, []);
-  const renderItem = (item, index) => {
+  const keyExtractor = useCallback((item, index) => index.toString(), []);
+
+  const renderItem = ({item, index}) => {
     return (
-      (filterData[item].ItemType === 'size' ||
-        filterData[item].ItemType === 'gender' ||
-        filterData[item].ItemType === 'brand' ||
-        filterData[item].ItemType === 'color' ||
-        filterData[item].ItemType === 'Price') && (
-        <View
+      (item.ItemType === 'size' ||
+        item.ItemType === 'gender' ||
+        item.ItemType === 'brand' ||
+        item.ItemType === 'color' ||
+        item.ItemType === 'Price') && (
+        <TouchableOpacity
+          onPress={() => {
+            setSelectedObj(item);
+            setType(true);
+          }}
           key={index}
-          style={{
-            ...gs.fdr,
-            paddingVertical: 15,
-            marginHorizontal: 20,
-            ...gs.jcsb,
-            borderBottomWidth: 1,
-            borderBottomColor: colors.color15,
-            ...gs.aic,
-          }}>
-          <CustomText f14 children={filterData[item].Name} />
+          style={RenderButton}>
+          <CustomText f14 children={item.Name} />
           <MaterialCommunityIcons
             name={'chevron-right'}
             color={colors.color9}
             size={sizes.f26}
           />
-        </View>
+        </TouchableOpacity>
       )
+    );
+  };
+  const renderItem2 = ({item, index}) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setSelectedObj(item);
+          setType(true);
+        }}
+        key={index}
+        style={RenderButton}>
+        <CustomText f14 children={item.Name} />
+      </TouchableOpacity>
     );
   };
   return (
     <View style={[Container, {paddingTop: insets.top}]}>
       <Modal
         visible={filterModal}
-        swipeDirection="left"
         presentationStyle="pageSheet"
         transparent={false}
+        // onShow={}
         style={{
           flex: 0,
         }}>
-        <View
-          style={{
-            paddingHorizontal: 20,
-            paddingVertical: 15,
-            ...gs.jcc,
-          }}>
-          <TouchableOpacity
-            onPress={() => setfilterModal(false)}
-            style={{
-              ...gs.jccaic,
-              ...gs.posAbs,
-              left: 20,
-            }}>
-            <MaterialCommunityIcons
-              name={'close'}
-              color={colors.color2}
-              size={sizes.f22}
+        {!type ? (
+          <>
+            <View
+              style={{
+                paddingHorizontal: 20,
+                paddingVertical: 15,
+                ...gs.jcc,
+              }}>
+              <TouchableOpacity
+                onPress={() => setfilterModal(false)}
+                style={{
+                  ...gs.jccaic,
+                  ...gs.posAbs,
+                  left: 20,
+                }}>
+                <MaterialCommunityIcons
+                  name={'close'}
+                  color={colors.color2}
+                  size={sizes.f22}
+                />
+              </TouchableOpacity>
+              <CustomText
+                style={{...gs.asc}}
+                f16
+                fSemibold
+                children="Filtrele"
+              />
+            </View>
+            <FlatList
+              data={Object.keys(filterData).map((item, index) => {
+                return filterData[item];
+              })}
+              renderItem={renderItem}
+              keyExtractor={keyExtractor}
             />
-          </TouchableOpacity>
-          <CustomText style={{...gs.asc}} f16 fSemibold children="Filtrele" />
-        </View>
-        <ScrollView>
-          {Object.keys(filterData).map((item, index) => {
-            return renderItem(item, index);
-          })}
-        </ScrollView>
-        <CustomButton
-          children="Ürünleri Gör"
-          style={{marginBottom: insets.bottom + 20}}
-        />
+            <CustomButton
+              children="Ürünleri Gör"
+              style={{marginBottom: insets.bottom + 20}}
+            />
+          </>
+        ) : (
+          <>
+            <View
+              style={{
+                paddingHorizontal: 20,
+                paddingVertical: 15,
+                ...gs.jcc,
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  setSelectedObj({});
+                  setType(false);
+                }}
+                style={{
+                  ...gs.jccaic,
+                  ...gs.posAbs,
+                  left: 20,
+                }}>
+                <MaterialCommunityIcons
+                  name={'chevron-left'}
+                  color={colors.color2}
+                  size={sizes.f22}
+                />
+              </TouchableOpacity>
+              <CustomText
+                style={{...gs.asc}}
+                f16
+                fSemibold
+                children={selectedObj.Name}
+              />
+            </View>
+            <FlatList
+              data={selectedObj.FilterModuleItems}
+              renderItem={renderItem2}
+              keyExtractor={keyExtractor}
+            />
+            <CustomButton
+              textColor={colors.mainColor}
+              bordered
+              children="Uygula"
+              style={{marginBottom: insets.bottom + 20}}
+            />
+          </>
+        )}
       </Modal>
       <View style={HeaderContainer}>
         <TouchableOpacity style={CommonButton}>
@@ -138,6 +212,15 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     height: '100%',
     borderColor: colors.color13,
+  },
+  RenderButton: {
+    ...gs.fdr,
+    paddingVertical: 15,
+    marginHorizontal: 20,
+    ...gs.jcsb,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.color15,
+    ...gs.aic,
   },
 });
 

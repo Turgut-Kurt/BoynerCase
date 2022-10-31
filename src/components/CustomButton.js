@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.color7,
     borderWidth: 2,
     borderColor: colors.mainColor,
-    borderRadius: 10,
+    borderRadius: 2,
     ...gs.jccaic,
   },
   WithIconStyle: {
