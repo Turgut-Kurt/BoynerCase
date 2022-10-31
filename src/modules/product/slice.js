@@ -19,11 +19,18 @@ export const slice = createSlice({
       state.filter = action.payload.Context;
     },
     addFavorite: (state, action) => {
-      console.log('addFavorite');
       let copyList = state.favoriteList;
       copyList.unshift(action.payload);
       let copyIdList = state.favoriteIdList;
       copyIdList.unshift(action.payload.ListingId);
+      state.favoriteList = copyList;
+      state.favoriteIdList = copyIdList;
+    },
+    deleteFavorite: (state, action) => {
+      let copyList = state.favoriteList;
+      copyList = copyList.filter(x => x.ListingId !== action.payload);
+      let copyIdList = state.favoriteIdList;
+      copyIdList = copyIdList.filter(x => x !== action.payload);
       state.favoriteList = copyList;
       state.favoriteIdList = copyIdList;
     },
@@ -46,6 +53,7 @@ export const slice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {setProducts, setFilter, addFavorite} = slice.actions;
+export const {setProducts, setFilter, addFavorite, deleteFavorite} =
+  slice.actions;
 
 export default slice.reducer;

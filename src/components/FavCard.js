@@ -30,7 +30,11 @@ const FavCard = ({item, index}) => {
   return (
     <View style={Container}>
       <FavButton
-        onPress={() => Actions.addFavoriteAction(item)}
+        onPress={() => {
+          active
+            ? Actions.deleteFavoriteAction(item.ListingId)
+            : Actions.addFavoriteAction(item);
+        }}
         type={active}
         buttonStyle={FavButtonStyle}
       />

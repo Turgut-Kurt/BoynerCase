@@ -7,5 +7,8 @@ export const getProductAction = createAction('getProductAction');
 //get filter Action
 export const getFilterAction = createAction('getFilterAction');
 
-//get filter Action
+//add favorite Action
 export const addFavoriteAction = createAction('addFavoriteAction');
+
+//delete favorite Action
+export const deleteFavoriteAction = createAction('deleteFavoriteAction');

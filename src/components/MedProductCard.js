@@ -40,7 +40,11 @@ const MedProductCard = ({item}) => {
 
       <View style={{}}>
         <FavButton
-          onPress={() => Actions.addFavoriteAction(item)}
+          onPress={() => {
+            active
+              ? Actions.deleteFavoriteAction(item.ListingId)
+              : Actions.addFavoriteAction(item);
+          }}
           type={active}
           buttonStyle={FavButtonStyle}
         />

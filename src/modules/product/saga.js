@@ -2,7 +2,7 @@ import * as Actions from './actions';
 
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects';
 import {getFilterService, getProductsService} from './service';
-import {addFavorite, setFilter, setProducts} from './slice';
+import {addFavorite, deleteFavorite, setFilter, setProducts} from './slice';
 import {showMessage} from 'react-native-flash-message';
 
 /**
@@ -66,8 +66,33 @@ function* addFavoriteSaga({payload}) {
     console.log('catch addFavoriteSaga error : ' + error);
   }
 }
+/**
+ * delete favorite saga
+ * ürünü favorilerden sil saga
+ * @param payload
+ * @returns {IterableIterator<*>}
+ */
+function* deleteFavoriteSaga({payload}) {
+  try {
+    yield put(deleteFavorite(payload));
+    yield call(showMessage, {
+      message: 'Başarılı',
+      description: 'Ürün favorilerden başarıyla silindi.',
+      type: 'success',
+    });
+  } catch (error) {
+    yield call(showMessage, {
+      message: 'Hata',
+      description: 'Ürünü favorilerden silme başarısız.',
+      type: 'danger',
+    });
+    console.log('catch deleteFavoriteSaga error : ' + error);
+  }
+}
+
 export default function* profileSaga() {
   yield takeLatest(Actions.getProductAction.type, getProductsSaga);
   yield takeLatest(Actions.getFilterAction.type, getFilterSaga);
   yield takeLatest(Actions.addFavoriteAction.type, addFavoriteSaga);
+  yield takeLatest(Actions.deleteFavoriteAction.type, deleteFavoriteSaga);
 }
