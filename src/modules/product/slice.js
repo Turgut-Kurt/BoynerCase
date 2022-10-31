@@ -19,12 +19,13 @@ export const slice = createSlice({
       state.filter = action.payload.Context;
     },
     addFavorite: (state, action) => {
+      console.log('addFavorite');
       let copyList = state.favoriteList;
       copyList.unshift(action.payload);
       let copyIdList = state.favoriteIdList;
       copyIdList.unshift(action.payload.ListingId);
-      state.favoriteList = [];
-      state.favoriteIdList = [];
+      state.favoriteList = copyList;
+      state.favoriteIdList = copyIdList;
     },
   },
   extraReducers: builder => {

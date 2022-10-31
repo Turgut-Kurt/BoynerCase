@@ -120,9 +120,13 @@ const Categories = props => {
               />
             </View>
             <FlatList
-              data={Object.keys(filterData).map((item, index) => {
-                return filterData[item];
-              })}
+              data={
+                filterData
+                  ? Object.keys(filterData).map((item, index) => {
+                      return filterData[item];
+                    })
+                  : []
+              }
               renderItem={renderItem}
               keyExtractor={keyExtractor}
             />

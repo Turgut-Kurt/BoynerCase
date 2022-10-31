@@ -3,7 +3,6 @@ import * as Actions from './actions';
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects';
 import {getFilterService, getProductsService} from './service';
 import {addFavorite, setFilter, setProducts} from './slice';
-import {goBack} from '~/utils';
 import {showMessage} from 'react-native-flash-message';
 
 /**
@@ -58,7 +57,6 @@ function* addFavoriteSaga({payload}) {
       description: 'Ürün başarıyla favorilere eklendi.',
       type: 'success',
     });
-    yield call(goBack);
   } catch (error) {
     yield call(showMessage, {
       message: 'Hata',

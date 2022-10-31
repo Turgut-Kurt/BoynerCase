@@ -12,12 +12,10 @@ import {favoriteIdListSelector} from '~/modules/product/selector';
 
 const MedProductCard = ({item}) => {
   const {DefaultButtonStyle, ImageStyle, ColorView, FavButtonStyle} = styles;
-  // const [active, setActive] = useState(false);
   const handleProductDetail = () => {
     navigate(commonStack.productDetail, {item: item});
   };
   const favIdList = useSelector(favoriteIdListSelector);
-  console.log('favIdList', favIdList);
   let active = favIdList.find(x => x === item.ListingId);
   const Actions = useActions();
   return (
