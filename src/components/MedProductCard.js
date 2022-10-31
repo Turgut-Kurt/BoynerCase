@@ -1,5 +1,5 @@
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {calcWidth, fontSize, navigate} from '~/utils';
 import {colors, gs} from './config';
 
