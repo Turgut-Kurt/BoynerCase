@@ -1,12 +1,14 @@
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
-import {calcWidth, fontSize, navigate} from '~/utils';
+import {calcHeight, calcWidth, fontSize} from '~/utils';
 import {colors, fonts, gs, sizes, weights} from './config';
 
+import {CheckBox} from 'react-native-elements/dist';
 import {CustomText} from './CustomText';
-import {commonStack} from '~/config';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const BasketCard = ({item}) => {
+  const [checked, setChecked] = useState(false);
   const {
     Container,
     CloseButton,
@@ -27,19 +29,19 @@ const BasketCard = ({item}) => {
           size={sizes.f22}
         />
       </TouchableOpacity>
-      <Image style={ImageStyle} source={{uri: data.PictureUrl}} />
+      <Image style={ImageStyle} source={{uri: item.PictureUrl}} />
       <View style={RightView}>
         <CustomText
           fSemibold
           f14
           style={{width: calcWidth(60)}}
-          children={data.ModelName}
+          children={item.ModelName}
           numberOfLines={2}
         />
         <CustomText
           f12
           style={CommonText}
-          children={`${data.FirstLevelProperties[0].Name} : ${data.FirstLevelProperties[0].Tooltip}`}
+          children={`${item.FirstLevelProperties[0].Name} : ${item.FirstLevelProperties[0].Tooltip}`}
           numberOfLines={1}
         />
         <CustomText
@@ -54,13 +56,13 @@ const BasketCard = ({item}) => {
             <CustomText
               style={PriceText}
               f12
-              children={`${data.StickerPrice} ${data.PriceCur}`}
+              children={`${item.StickerPrice} ${item.PriceCur}`}
               numberOfLines={1}
             />
             <CustomText
               f16
               fSemibold
-              children={`${data.DiscountPrice} ${data.PriceCur}`}
+              children={`${item.DiscountPrice} ${item.PriceCur}`}
               numberOfLines={1}
             />
           </View>
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     textDecorationStyle: 'solid',
     color: colors.color13,
   },
-  ImageStyle: {width: '100%', height: fontSize(220), borderRadius: 3},
+  ImageStyle: {width: calcWidth(20), height: '100%'},
   CheckBoxStyle: {
     // width: calcWidth(100) - 40,
     borderWidth: 1,

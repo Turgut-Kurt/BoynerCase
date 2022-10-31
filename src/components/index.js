@@ -9,3 +9,4 @@ export * from './ProductList';
 export * from './MedProductCard';
 export * from './FavButton';
 export * from './BasketCard';
+export * from './BasketList';
