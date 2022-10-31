@@ -37,3 +37,28 @@ export const sortDataSelector = createSelector(
   },
 );
 
+
+/**
+ * favorite id list selector
+ * @type {OutputSelector<unknown, *, (res: *) => *>}
+ */
+export const favoriteIdListSelector = createSelector(
+  state => state.product.favoriteIdList,
+  favoriteIdList => {
+    console.log('favoriteIdListSelector has worked');
+    return favoriteIdList;
+  },
+);
+
+/**
+ * favorite list selector
+ * @type {OutputSelector<unknown, *, (res: *) => *>}
+ */
+export const favoriteListSelector = createSelector(
+  state => state.product.favoriteList,
+  favoriteList => {
+    console.log('favoriteList has worked');
+    return favoriteList;
+  },
+);
+
